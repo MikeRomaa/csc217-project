@@ -3,7 +3,7 @@ import time
 
 import numpy as np
 
-from election.demographics import Demographics
+from election import demographic
 
 # Age and gender probabilities are provided by the Census Bureau as a joint statistic.
 # Therefore, we'll construct a joint probability mass function.
@@ -23,9 +23,7 @@ location_probabilities = [0.31, 0.55, 0.14]
 
 choices = [
     gender | age | location
-    for gender, age, location in itertools.product(
-        Demographics.genders(), Demographics.age_ranges(), Demographics.locations()
-    )
+    for gender, age, location in itertools.product(demographic.GENDERS, demographic.AGE_RANGES, demographic.LOCATIONS)
 ]
 probabilities = [a * b for a, b in itertools.product(gender_age_probabilities, location_probabilities)]
 
