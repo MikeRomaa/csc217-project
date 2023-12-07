@@ -1,4 +1,7 @@
 from dataclasses import dataclass
+from functools import reduce
+
+import numpy as np
 
 from election.demographic import Demographic
 
@@ -8,6 +11,18 @@ class Policy:
     description: str
     weights: dict[Demographic, float]
 
+    def approval(self, demographics: Demographic) -> float:
+        """Returns probability of the given person voting YES for the policy.
+
+        Args:
+            Demographics representing a person in the population.
+
+        Returns:
+            Probability between 0 and 1 obtained from multiplying the weights of each
+            component of the demographics.
+        """
+        return reduce(lambda x, y: x * self.weights[y], demographics, 1)
+
 
 TECHNOLOGY_USE = Policy(
     description=(
@@ -15,15 +30,16 @@ TECHNOLOGY_USE = Policy(
         "Congress is proposing a strict five hour limit on recreational internet use."
     ),
     weights={
-        Demographic.MALE: 0,
-        Demographic.FEMALE: 0,
-        Demographic.UNDER_21: 0,
-        Demographic.UNDER_45: 0,
-        Demographic.UNDER_65: 0,
-        Demographic.OVER_65: 0,
-        Demographic.URBAN: 0,
-        Demographic.SUBURBAN: 0,
-        Demographic.RURAL: 0,
+        # TODO: Replace with actual probabilities
+        Demographic.MALE: np.random.uniform(),
+        Demographic.FEMALE: np.random.uniform(),
+        Demographic.UNDER_21: np.random.uniform(),
+        Demographic.UNDER_45: np.random.uniform(),
+        Demographic.UNDER_65: np.random.uniform(),
+        Demographic.OVER_65: np.random.uniform(),
+        Demographic.URBAN: np.random.uniform(),
+        Demographic.SUBURBAN: np.random.uniform(),
+        Demographic.RURAL: np.random.uniform(),
     },
 )
 
@@ -33,15 +49,16 @@ UNIV_HEALTHCARE = Policy(
         "citing the poor health of many low and middle-class workers. "
     ),
     weights={
-        Demographic.MALE: 0,
-        Demographic.FEMALE: 0,
-        Demographic.UNDER_21: 0,
-        Demographic.UNDER_45: 0,
-        Demographic.UNDER_65: 0,
-        Demographic.OVER_65: 0,
-        Demographic.URBAN: 0,
-        Demographic.SUBURBAN: 0,
-        Demographic.RURAL: 0,
+        # TODO: Replace with actual probabilities
+        Demographic.MALE: np.random.uniform(),
+        Demographic.FEMALE: np.random.uniform(),
+        Demographic.UNDER_21: np.random.uniform(),
+        Demographic.UNDER_45: np.random.uniform(),
+        Demographic.UNDER_65: np.random.uniform(),
+        Demographic.OVER_65: np.random.uniform(),
+        Demographic.URBAN: np.random.uniform(),
+        Demographic.SUBURBAN: np.random.uniform(),
+        Demographic.RURAL: np.random.uniform(),
     },
 )
 
@@ -51,15 +68,16 @@ FINANCIAL_AID = Policy(
         "are demanding that the government provide more financial aid to students."
     ),
     weights={
-        Demographic.MALE: 0,
-        Demographic.FEMALE: 0,
-        Demographic.UNDER_21: 0,
-        Demographic.UNDER_45: 0,
-        Demographic.UNDER_65: 0,
-        Demographic.OVER_65: 0,
-        Demographic.URBAN: 0,
-        Demographic.SUBURBAN: 0,
-        Demographic.RURAL: 0,
+        # TODO: Replace with actual probabilities
+        Demographic.MALE: np.random.uniform(),
+        Demographic.FEMALE: np.random.uniform(),
+        Demographic.UNDER_21: np.random.uniform(),
+        Demographic.UNDER_45: np.random.uniform(),
+        Demographic.UNDER_65: np.random.uniform(),
+        Demographic.OVER_65: np.random.uniform(),
+        Demographic.URBAN: np.random.uniform(),
+        Demographic.SUBURBAN: np.random.uniform(),
+        Demographic.RURAL: np.random.uniform(),
     },
 )
 
@@ -70,14 +88,15 @@ AIR_QUALITY = Policy(
         "residence for three days demanding an end to all toxic emissions."
     ),
     weights={
-        Demographic.MALE: 0,
-        Demographic.FEMALE: 0,
-        Demographic.UNDER_21: 0,
-        Demographic.UNDER_45: 0,
-        Demographic.UNDER_65: 0,
-        Demographic.OVER_65: 0,
-        Demographic.URBAN: 0,
-        Demographic.SUBURBAN: 0,
-        Demographic.RURAL: 0,
+        # TODO: Replace with actual probabilities
+        Demographic.MALE: np.random.uniform(),
+        Demographic.FEMALE: np.random.uniform(),
+        Demographic.UNDER_21: np.random.uniform(),
+        Demographic.UNDER_45: np.random.uniform(),
+        Demographic.UNDER_65: np.random.uniform(),
+        Demographic.OVER_65: np.random.uniform(),
+        Demographic.URBAN: np.random.uniform(),
+        Demographic.SUBURBAN: np.random.uniform(),
+        Demographic.RURAL: np.random.uniform(),
     },
 )
