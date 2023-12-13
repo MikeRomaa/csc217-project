@@ -31,15 +31,15 @@ TECHNOLOGY_USE = Policy(
     ),
     weights={
         # TODO: Replace with actual probabilities
-        Demographic.MALE: np.random.uniform(),
-        Demographic.FEMALE: np.random.uniform(),
-        Demographic.UNDER_21: np.random.uniform(),
-        Demographic.UNDER_45: np.random.uniform(),
-        Demographic.UNDER_65: np.random.uniform(),
-        Demographic.OVER_65: np.random.uniform(),
-        Demographic.URBAN: np.random.uniform(),
-        Demographic.SUBURBAN: np.random.uniform(),
-        Demographic.RURAL: np.random.uniform(),
+        Demographic.MALE: np.random.uniform(0, 0.5),
+        Demographic.FEMALE: np.random.uniform(0, 0.5),
+        Demographic.UNDER_21: np.random.uniform(0, 0.4),
+        Demographic.UNDER_45: np.random.uniform(0.3, 0.7),
+        Demographic.UNDER_65: np.random.uniform(0.5, 0.9),
+        Demographic.OVER_65: np.random.uniform(0.6, 1),
+        Demographic.URBAN: np.random.uniform(0.2, 0.8),
+        Demographic.SUBURBAN: np.random.uniform(0.3, 0.7),
+        Demographic.RURAL: np.random.uniform(0, 0.5),
     },
 )
 
@@ -50,15 +50,15 @@ UNIV_HEALTHCARE = Policy(
     ),
     weights={
         # TODO: Replace with actual probabilities
-        Demographic.MALE: np.random.uniform(),
-        Demographic.FEMALE: np.random.uniform(),
-        Demographic.UNDER_21: np.random.uniform(),
-        Demographic.UNDER_45: np.random.uniform(),
-        Demographic.UNDER_65: np.random.uniform(),
-        Demographic.OVER_65: np.random.uniform(),
-        Demographic.URBAN: np.random.uniform(),
-        Demographic.SUBURBAN: np.random.uniform(),
-        Demographic.RURAL: np.random.uniform(),
+        Demographic.MALE: np.random.uniform(0.4, 0.8),
+        Demographic.FEMALE: np.random.uniform(0.6, 1),
+        Demographic.UNDER_21: np.random.uniform(0.6, 0.9),
+        Demographic.UNDER_45: np.random.uniform(0.4, 0.9),
+        Demographic.UNDER_65: np.random.uniform(0.4, 0.7),
+        Demographic.OVER_65: np.random.uniform(0.4, 0.8),
+        Demographic.URBAN: np.random.uniform(0.6, 1),
+        Demographic.SUBURBAN: np.random.uniform(0.3, 0.9),
+        Demographic.RURAL: np.random.uniform(0.3, 0.7),
     },
 )
 
@@ -68,16 +68,15 @@ FINANCIAL_AID = Policy(
         "are demanding that the government provide more financial aid to students."
     ),
     weights={
-        # TODO: Replace with actual probabilities
-        Demographic.MALE: np.random.uniform(),
-        Demographic.FEMALE: np.random.uniform(),
-        Demographic.UNDER_21: np.random.uniform(),
-        Demographic.UNDER_45: np.random.uniform(),
-        Demographic.UNDER_65: np.random.uniform(),
-        Demographic.OVER_65: np.random.uniform(),
-        Demographic.URBAN: np.random.uniform(),
-        Demographic.SUBURBAN: np.random.uniform(),
-        Demographic.RURAL: np.random.uniform(),
+        Demographic.MALE: np.random.uniform(0.4, 0.8),
+        Demographic.FEMALE: np.random.uniform(0.6, 0.8),
+        Demographic.UNDER_21: np.random.uniform(0.7, 1),
+        Demographic.UNDER_45: np.random.uniform(0.5, 0.7),
+        Demographic.UNDER_65: np.random.uniform(0.3, 0.5),
+        Demographic.OVER_65: np.random.uniform(0.0, 0.2),
+        Demographic.URBAN: np.random.uniform(0.8, 1),
+        Demographic.SUBURBAN: np.random.uniform(0.5, 0.8),
+        Demographic.RURAL: np.random.uniform(0, 0.2),
     },
 )
 
@@ -88,15 +87,14 @@ AIR_QUALITY = Policy(
         "residence for three days demanding an end to all toxic emissions."
     ),
     weights={
-        # TODO: Replace with actual probabilities
-        Demographic.MALE: np.random.uniform(),
-        Demographic.FEMALE: np.random.uniform(),
-        Demographic.UNDER_21: np.random.uniform(),
-        Demographic.UNDER_45: np.random.uniform(),
-        Demographic.UNDER_65: np.random.uniform(),
-        Demographic.OVER_65: np.random.uniform(),
-        Demographic.URBAN: np.random.uniform(),
-        Demographic.SUBURBAN: np.random.uniform(),
-        Demographic.RURAL: np.random.uniform(),
+        Demographic.MALE: np.random.uniform(0.3, 0.8),
+        Demographic.FEMALE: np.random.uniform(0.6, 0.8),
+        Demographic.UNDER_21: np.random.uniform(0.6, 1),
+        Demographic.UNDER_45: np.random.uniform(0.5, 0.9),
+        Demographic.UNDER_65: np.random.uniform(0.5, 0.7),
+        Demographic.OVER_65: np.random.uniform(0, 0.4),
+        Demographic.URBAN: np.random.uniform(0.6, 1),
+        Demographic.SUBURBAN: np.random.uniform(0.3, 0.8),
+        Demographic.RURAL: np.random.uniform(0, 0.2),
     },
 )

@@ -1,7 +1,5 @@
 from abc import ABC, abstractmethod
 
-import numpy as np
-
 from election.candidate import Candidate
 from election.demographic import Demographic
 
@@ -26,9 +24,7 @@ class Election:
         for person in population:
             choices = sorted(
                 candidates,
-                # TODO: Make it not random whenever we write the weights.
-                # key=lambda candidate: candidate.approval(person),
-                key=lambda _: np.random.normal(0, 1),
+                key=lambda candidate: candidate.approval(person),
             )
             for i, choice in enumerate(choices):
                 self.results[choice.name][i] += 1

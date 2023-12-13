@@ -40,8 +40,8 @@ CANDIDATES = [
         party="Birthday Party",
         stances=[
             (policy.TECHNOLOGY_USE, True),
-            (policy.UNIV_HEALTHCARE, True),
-            (policy.FINANCIAL_AID, True),
+            (policy.UNIV_HEALTHCARE, False),
+            (policy.FINANCIAL_AID, False),
             (policy.AIR_QUALITY, True),
         ],
     ),
@@ -60,7 +60,7 @@ CANDIDATES = [
         party="The Best Party",
         stances=[
             (policy.TECHNOLOGY_USE, False),
-            (policy.UNIV_HEALTHCARE, True),
+            (policy.UNIV_HEALTHCARE, False),
             (policy.FINANCIAL_AID, True),
             (policy.AIR_QUALITY, True),
         ],
@@ -69,7 +69,7 @@ CANDIDATES = [
         name="Janelle Lawless",
         party="Independent",
         stances=[
-            (policy.TECHNOLOGY_USE, False),
+            (policy.TECHNOLOGY_USE, True),
             (policy.UNIV_HEALTHCARE, False),
             (policy.FINANCIAL_AID, False),
             (policy.AIR_QUALITY, False),
