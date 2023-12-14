@@ -44,10 +44,14 @@ if __name__ == "__main__":
         print(system.__name__, winner.name)
 
         ratings = [winner.approval(person) for person in population]
+        mean=round(statistics.mean(ratings),2)
+        stdev= round(statistics.stdev(ratings),2)
 
         fig, ax = plt.subplots()
         ax.hist(ratings, bins=10)
         ax.set_xlim(left=-2, right=2)
+        plt.xlabel("Approval Rating")
+        plt.text(1, 1000, rf'$\mu$ = {mean}' + '\n' + rf'$\sigma$ = {stdev}' )
         ax.set_title(f"Approval Rating Distribution for {winner.name}")
 
         plt.show()
