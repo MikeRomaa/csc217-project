@@ -2,11 +2,10 @@ import itertools
 import time
 
 import numpy as np
-from matplotlib import pyplot as plt
 
-from election import demographic
+from election import constants, demographic
 from election.candidate import CANDIDATES
-from election.systems import Election, PopularVote
+from election.systems import ApprovalVoting, Election, FirstPastThePost, RankedChoiceVoting
 
 # Age and gender probabilities are provided by the Census Bureau as a joint statistic.
 # Therefore, we'll construct a joint probability mass function.
@@ -30,49 +29,15 @@ choices = [
 ]
 probabilities = [a * b for a, b in itertools.product(gender_age_probabilities, location_probabilities)]
 
-# Some configuration options to rig/tune the election.
-
-POPULATION_SIZE = 10_000
-
 # Where the magic all happens
 
 if __name__ == "__main__":
-    # user = demographic.Demographic.MALE | demographic.Demographic.UNDER_21 | demographic.Demographic.URBAN
-    # print([c.approval(user) for c in candidate.CANDIDATES])
     start = time.perf_counter()
-    population = np.random.choice(choices, POPULATION_SIZE, p=probabilities)
-    print(f"Generated {POPULATION_SIZE} people in {time.perf_counter() - start}s")
+    population = np.random.choice(choices, constants.POPULATION_SIZE, p=probabilities)
+    print(f"Generated {constants.POPULATION_SIZE} people in {time.perf_counter() - start}s")
 
-    num_candidates = len(CANDIDATES)
     election = Election(CANDIDATES, population)
 
-    print(election.results)
-    print(PopularVote.tally(election).name)
-
-    y = np.arange(num_candidates)
-    width = 0.5
-
-    fig, ax = plt.subplots()
-    fig.set_size_inches(10, 5)
-
-    color_map = plt.get_cmap("tab20c")
-
-    bottom = np.zeros(num_candidates)
-    for i in range(num_candidates):
-        values = [c[i] for c in election.results.values()]
-        ax.barh(
-            y + width,
-            values,
-            width,
-            left=bottom,
-            color=color_map.colors[i::4],
-        )
-        bottom += values
-
-    ax.invert_yaxis()
-    ax.set_yticks(y + width, (c.name for c in CANDIDATES))
-    ax.set_xlabel('Votes')
-    ax.set_title('Ranked Choice Votes per Candidate')
-
-    plt.subplots_adjust(left=0.14)
-    plt.show()
+    for system in [FirstPastThePost, RankedChoiceVoting, ApprovalVoting]:
+        winner = system.tally(election)
+        print(system.__name__, winner.name)
