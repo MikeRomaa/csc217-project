@@ -147,7 +147,7 @@ class ApprovalVoting(ElectoralSystem):
     """In an approval voting system, people are allowed to vote for any number of people they support. The candidate
     with the most total votes is declared the winner.
 
-    In our simulation, support is defined as having an approval rating of at least 0.5. This does mean that a person
+    In our simulation, support is defined as having an approval rating of at least 0. This does mean that a person
     might not vote for anybody if their approval ratings are all below the threshold.
     """
 
@@ -156,9 +156,9 @@ class ApprovalVoting(ElectoralSystem):
         counts = {candidate: 0 for candidate in election.candidates}
 
         for vote in election.results:
-            # We get all candidates that the person "supports" (approval >= 0.5)
+            # We get all candidates that the person "supports" (approval >= 0)
             choices = filter(
-                lambda x: x[1] >= 0.5,
+                lambda x: x[1] >= 0,
                 zip(election.candidates.values(), vote),
             )
 
