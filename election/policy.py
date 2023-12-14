@@ -30,7 +30,6 @@ TECHNOLOGY_USE = Policy(
         "Congress is proposing a strict five hour limit on recreational internet use."
     ),
     weights={
-        # TODO: Replace with actual probabilities
         Demographic.MALE: np.random.uniform(0, 0.5),
         Demographic.FEMALE: np.random.uniform(0, 0.5),
         Demographic.UNDER_21: np.random.uniform(0, 0.4),
@@ -49,7 +48,6 @@ UNIV_HEALTHCARE = Policy(
         "citing the poor health of many low and middle-class workers. "
     ),
     weights={
-        # TODO: Replace with actual probabilities
         Demographic.MALE: np.random.uniform(0.4, 0.8),
         Demographic.FEMALE: np.random.uniform(0.6, 1),
         Demographic.UNDER_21: np.random.uniform(0.6, 0.9),

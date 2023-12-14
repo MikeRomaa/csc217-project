@@ -2,6 +2,7 @@ import itertools
 import time
 
 import numpy as np
+from matplotlib import pyplot as plt
 
 from election import constants, demographic
 from election.candidate import CANDIDATES
@@ -41,3 +42,12 @@ if __name__ == "__main__":
     for system in [FirstPastThePost, RankedChoiceVoting, ApprovalVoting]:
         winner = system.tally(election)
         print(system.__name__, winner.name)
+
+        ratings = [winner.approval(person) for person in population]
+
+        fig, ax = plt.subplots()
+        ax.hist(ratings, bins=10)
+        ax.set_xlim(left=-2, right=2)
+        ax.set_title(f"Approval Rating Distribution for {winner.name}")
+
+        plt.show()

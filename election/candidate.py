@@ -71,8 +71,18 @@ CANDIDATES = [
         stances=[
             (policy.TECHNOLOGY_USE, True),
             (policy.UNIV_HEALTHCARE, False),
-            (policy.FINANCIAL_AID, False),
+            (policy.FINANCIAL_AID, True),
             (policy.AIR_QUALITY, False),
+        ],
+    ),
+    Candidate(
+        name="Joe Schmoe",
+        party="New Yorkers Against Scooped Bagels Party",
+        stances=[
+            (policy.TECHNOLOGY_USE, False),
+            (policy.UNIV_HEALTHCARE, True),
+            (policy.FINANCIAL_AID, True),
+            (policy.AIR_QUALITY, True),
         ],
     ),
 ]

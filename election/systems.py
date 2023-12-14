@@ -42,21 +42,23 @@ class ElectoralSystem(ABC):
 
     @staticmethod
     def plot(data: dict[str, int]) -> plt.Axes:
+        sorted_data = dict(sorted(data.items()))
+
         fig, ax = plt.subplots()
         fig.set_size_inches(10, 5)
 
         color_map = plt.get_cmap("tab20c")
 
-        y = np.arange(len(data))
+        y = np.arange(len(sorted_data))
         ax.barh(
             y,
-            data.values(),
+            sorted_data.values(),
             color=color_map.colors[::4],
             align="center",
         )
 
         ax.invert_yaxis()
-        ax.set_yticks(y, data.keys())
+        ax.set_yticks(y, sorted_data.keys())
         ax.set_xlabel("Votes")
         ax.set_xlim(left=0, right=constants.POPULATION_SIZE)
 
