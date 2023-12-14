@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 
+import numpy as np
+
 from election import policy
 from election.demographic import Demographic
 from election.policy import Policy
@@ -21,7 +23,7 @@ class Candidate:
             Floating number between -2 and 2, with 0 being the baseline approval
             representing indifference to the candidate.
         """
-        return sum(
+        mean = sum(
             # We first adjust the approval probability for the policy by a factor of 0.5.
             # This means that if somebody is less than 50% likely to vote YES for a policy,
             # they will tend to dislike candidates that strongly support the policy.
@@ -32,6 +34,8 @@ class Candidate:
             * (1 if stance else -1)
             for pol, stance in self.stances
         )
+
+        return np.random.normal(mean, 0.25)
 
 
 CANDIDATES = [

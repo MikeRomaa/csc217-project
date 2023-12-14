@@ -44,9 +44,11 @@ if __name__ == "__main__":
         winner = system.tally(election)
         print(system.__name__, winner.name)
 
-        ratings = [winner.approval(person) for person in population]
-        mean = round(statistics.mean(ratings), 2)
-        stdev = round(statistics.stdev(ratings), 2)
+        winner_idx = list(election.candidates.keys()).index(winner.name)
+        ratings = [vote[winner_idx] for vote in election.results]
+
+        mean = round(statistics.mean(ratings), 3)
+        stdev = round(statistics.stdev(ratings), 3)
 
         fig, ax = plt.subplots()
         ax.hist(ratings, bins=10, rwidth=0.9)
