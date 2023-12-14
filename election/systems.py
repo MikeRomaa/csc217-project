@@ -50,12 +50,13 @@ class ElectoralSystem(ABC):
         color_map = plt.get_cmap("tab20c")
 
         y = np.arange(len(sorted_data))
-        ax.barh(
+        bar = ax.barh(
             y,
             sorted_data.values(),
             color=color_map.colors[::4],
             align="center",
         )
+        ax.bar_label(bar, padding=5)
 
         ax.invert_yaxis()
         ax.set_yticks(y, sorted_data.keys())
@@ -101,6 +102,7 @@ class RankedChoiceVoting(ElectoralSystem):
     @staticmethod
     def tally(election: Election) -> Candidate:
         remaining_candidates = set(election.candidates)
+        eliminated_candidates = set()
 
         round_num = 1
         max_rounds = len(remaining_candidates) - 1
@@ -120,7 +122,12 @@ class RankedChoiceVoting(ElectoralSystem):
 
                 counts[choice.name] += 1
 
-            RankedChoiceVoting.plot(counts, round_num, max_rounds)
+            RankedChoiceVoting.plot(
+                # We throw in the losing candidates too so things don't move around on the graph
+                counts | {candidate: 0 for candidate in eliminated_candidates},
+                round_num,
+                max_rounds,
+            )
 
             # Check if any candidate has a majority. Stop the count if yes
             for candidate, votes in counts.items():
@@ -128,7 +135,10 @@ class RankedChoiceVoting(ElectoralSystem):
                     return election.candidates[candidate]
 
             # Otherwise, eliminate the candidate with the fewest votes
-            remaining_candidates.remove(min(counts, key=counts.get))
+            loser = min(counts, key=counts.get)
+            remaining_candidates.remove(loser)
+            eliminated_candidates.add(loser)
+
             round_num += 1
 
     @staticmethod
